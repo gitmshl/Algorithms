@@ -49,6 +49,10 @@ namespace mshl
         avl_tree() : root(nullptr) {}
 
         void insert(T key);
+        void remove(T key);
+        node<T>* find(T key);
+        node<T>* min();
+        node<T>* max();
 #ifdef TEST
         void print(node<T>* r)
         {
@@ -68,6 +72,11 @@ namespace mshl
         node<T>* rot_right(node<T>* v);
         node<T>* balance (node<T>* v);
         node<T>* insert(T key, node<T>* v, node<T>* parent);
+        node<T>* remove(T key, node<T>* r);
+        node<T>* remove_min(node<T>* r);
+        node<T>* min(node<T>* r);
+        node<T>* max(node<T>* r);
+        node<T>* find(T key, node<T>* r);
 
         node<T>* root;
     };
