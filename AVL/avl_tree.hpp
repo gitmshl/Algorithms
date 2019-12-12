@@ -48,7 +48,7 @@ namespace mshl
     public:
         avl_tree() : root(nullptr) {}
 
-        node<T>* insert(T key);
+        void insert(T key);
 #ifdef TEST
         void print(node<T>* r)
         {
@@ -64,9 +64,9 @@ namespace mshl
         }
 #endif  
     private:
-        void rot_left(node<T>* v);
-        void rot_right(node<T>* v);
-        void balance (node<T>* v);
+        node<T>* rot_left(node<T>* v);
+        node<T>* rot_right(node<T>* v);
+        node<T>* balance (node<T>* v);
         node<T>* insert(T key, node<T>* v, node<T>* parent);
 
         node<T>* root;
