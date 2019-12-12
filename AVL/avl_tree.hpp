@@ -1,5 +1,9 @@
 #pragma once
 
+#ifdef TEST
+#include <iostream>
+#endif
+
 namespace mshl
 {
     typedef unsigned char uint;
@@ -27,7 +31,7 @@ namespace mshl
     template<class T>
     inline int diff(node<T>* v)
     {
-        return v ? height(v->right) - height(v->left) : 0;
+        return v ? int(height(v->right)) - int(height(v->left)) : 0;
     }
 
     template<class T>
@@ -45,7 +49,20 @@ namespace mshl
         avl_tree() : root(nullptr) {}
 
         node<T>* insert(T key);
-
+#ifdef TEST
+        void print(node<T>* r)
+        {
+            if (!r) return;
+            std::cout << r->key << " ";
+            print(r->left);
+            print(r->right);
+        }
+        void print()
+        {
+            print(root);
+            std::cout << "\n----------------------------" << std::endl;
+        }
+#endif  
     private:
         void rot_left(node<T>* v);
         void rot_right(node<T>* v);
