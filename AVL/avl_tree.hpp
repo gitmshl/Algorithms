@@ -11,12 +11,11 @@ namespace mshl
     template<class T>
     struct node
     {
-        explicit node(T key, node* parent = nullptr) 
-            : key(key), parent(parent), left(nullptr), right(nullptr), height(1)
+        explicit node(const T& key) 
+            : key(key), left(nullptr), right(nullptr), height(1)
         {}
 
         T key;
-        node* parent;
         node* left;
         node* right;
         uint height;
@@ -42,17 +41,20 @@ namespace mshl
         v->height = (lefth > righth ? lefth : righth) + 1;
     }
 
-    template <class T>
+    template <class T, typename Comparator = std::less<T>>
     class avl_tree
     {
     public:
-        avl_tree() : root(nullptr) {}
+        avl_tree() : root(nullptr), cmp(Comparator()) 
+        {
+            
+        }
 
-        void insert(T key);
-        void remove(T key);
-        node<T>* find(T key);
-        node<T>* min();
-        node<T>* max();
+        void insert(const T& key);
+        void remove(const T& key);
+        node<T>* find(const T& key) const;
+        node<T>* min() const;
+        node<T>* max() const;
 #ifdef TEST
         void print(node<T>* r)
         {
@@ -71,14 +73,15 @@ namespace mshl
         node<T>* rot_left(node<T>* v);
         node<T>* rot_right(node<T>* v);
         node<T>* balance (node<T>* v);
-        node<T>* insert(T key, node<T>* v, node<T>* parent);
-        node<T>* remove(T key, node<T>* r);
+        node<T>* insert(const T& key, node<T>* v);
+        node<T>* remove(const T& key, node<T>* r);
         node<T>* remove_min(node<T>* r);
-        node<T>* min(node<T>* r);
-        node<T>* max(node<T>* r);
-        node<T>* find(T key, node<T>* r);
+        node<T>* min(node<T>* r) const;
+        node<T>* max(node<T>* r) const;
+        node<T>* find(const T& key, node<T>* r) const;
 
         node<T>* root;
+        Comparator cmp;
     };
 }
 
