@@ -1,9 +1,5 @@
 #pragma once
 
-#ifdef TEST
-#include <iostream>
-#endif
-
 namespace mshl
 {
     typedef unsigned char uint;
@@ -45,30 +41,14 @@ namespace mshl
     class avl_tree
     {
     public:
-        avl_tree() : root(nullptr), cmp(Comparator()) 
-        {
-            
-        }
+        avl_tree() : root(nullptr), cmp(Comparator()) {}
 
         void insert(const T& key);
         void remove(const T& key);
         node<T>* find(const T& key) const;
         node<T>* min() const;
         node<T>* max() const;
-#ifdef TEST
-        void print(node<T>* r)
-        {
-            if (!r) return;
-            std::cout << r->key << " ";
-            print(r->left);
-            print(r->right);
-        }
-        void print()
-        {
-            print(root);
-            std::cout << "\n----------------------------" << std::endl;
-        }
-#endif  
+
     private:
         node<T>* rot_left(node<T>* v);
         node<T>* rot_right(node<T>* v);
