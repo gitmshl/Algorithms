@@ -29,7 +29,7 @@ mshl::node<T>* mshl::avl_tree<T, Comparator>::balance(mshl::node<T>* v)
 {
     if (!v) return nullptr;
     fix_heigth(v);
-    uint diff_ = diff(v);
+    int diff_ = diff(v);
     if (diff_ == 2)
     {
         if (diff(v->right) < 0) rot_right(v->right);
