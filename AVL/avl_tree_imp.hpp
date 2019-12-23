@@ -37,7 +37,7 @@ mshl::node<T>* mshl::avl_tree<T, Comparator>::balance(mshl::node<T>* v)
     }
     else if (diff_ == -2)
     {
-        if (diff(v->left) < 0) rot_left(v->left);
+        if (diff(v->left) > 0) rot_left(v->left);
         return rot_right(v);
     }
     return v;
